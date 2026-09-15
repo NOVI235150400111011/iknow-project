@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iKnow - Verifikasi Wajah</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <h1>iKnow</h1>
+    <img
+      src="assets/images/fifgroup-logo.jpg"
+      alt="FIFGROUP"
+      class="header-logo"
+    >
+  </div>
+
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="content">
+
+    <!-- ===== PERHATIAN ===== -->
+    <p class="warning-title">PERHATIAN PENGGUNAAN :</p>
+
+    <ol class="warning-list">
+      <li>Pastikan gambar yang dimasukkan fokus ke wajah</li>
+      <li>
+        Pastikan gambar wajah tidak menggunakan kacamata, topi, masker,
+        aksesoris, dan riasan (make up) berlebihan
+      </li>
+      <li>Pastikan kedua foto wajah dengan pencahayaan dan kualitas yang baik (tidak gelap/blur) </li>
+    </ol>
+
+
+    <!-- ===== CONTOH GAMBAR ===== -->
+    <div class="example-row">
+      <img
+        src="assets/images/contoh_benar.png"
+        alt="Contoh Benar"
+        class="example-img"
+      >
+
+      <img
+        src="assets/images/contoh_salah1.png"
+        alt="Contoh Salah 1"
+        class="example-img"
+      >
+
+      <img
+        src="assets/images/contoh_salah2.png"
+        alt="Contoh Salah 2"
+        class="example-img"
+      >
+
+      <img
+        src="assets/images/contoh_salah3.png"
+        alt="Contoh Salah 3"
+        class="example-img"
+      >
+    </div>
+
+
+    <!-- ===== DIVIDER ===== -->
+    <div class="divider"></div>
+
+
+    <!-- ===== VERIFY SECTION ===== -->
+    <div class="verify-layout">
+
+      <!-- ===== LEFT : UPLOAD ===== -->
+      <div class="upload-column">
+
+        <p class="verify-title">PERIKSA GAMBAR DI SINI</p>
+
+        <div class="upload-boxes">
+
+          <!-- FOTO 1 -->
+          <div class="upload-box" id="box1">
+            <img
+              src="assets/images/face_siluet.png"
+              class="silhouette"
+              alt=""
+            >
+            <span class="box-label">FOTO 1</span>
+          </div>
+
+          <!-- FOTO 2 -->
+          <div class="upload-box" id="box2">
+            <img
+              src="assets/images/face_siluet.png"
+              class="silhouette"
+              alt=""
+            >
+            <span class="box-label">FOTO 2</span>
+          </div>
+
+        </div>
+
+
+        <!-- UPLOAD BUTTONS -->
+        <div class="upload-buttons">
+
+          <button type="button" id="upload-btn-1">
+            + Upload Foto 1
+          </button>
+
+          <button type="button" id="upload-btn-2">
+            + Upload Foto 2
+          </button>
+
+        </div>
+
+
+        <!-- HIDDEN FILE INPUT -->
+        <input
+          type="file"
+          id="file-input-1"
+          accept="image/jpeg,image/png"
+          style="display: none"
+        >
+
+        <input
+          type="file"
+          id="file-input-2"
+          accept="image/jpeg,image/png"
+          style="display: none"
+        >
+
+
+        <!-- CHECK BUTTON -->
+        <button
+          class="btn-primary"
+          id="check-btn"
+        >
+          Periksa Foto
+        </button>
+
+        <p
+          class="error-message"
+          id="verify-error"
+        ></p>
+
+      </div>
+
+
+      <!-- ===== RIGHT : RESULT ===== -->
+      <div class="result-column">
+
+        <!-- TITLE DI LUAR CONTAINER -->
+        <p class="result-title">HASIL KEMIRIPAN</p>
+
+
+        <!-- RESULT CONTAINER -->
+        <div
+          class="result-panel"
+          id="result-panel"
+        >
+
+          <!-- DONUT -->
+          <div class="donut-wrapper">
+            <div
+              class="donut"
+              id="donut-chart"
+            >
+              <div class="donut-inner">
+                <span id="donut-percentage">0%</span>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- CONCLUSION -->
+          <p
+            class="result-conclusion conclusion-default"
+            id="result-conclusion"
+          >
+            TIDAK ADA FOTO
+          </p>
+
+
+          <!-- NOTE -->
+          <p
+            class="result-note"
+            id="result-note"
+          >
+            Masukkan foto untuk melihat hasil kemiripan
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===== FOOTER ===== -->
+  <div class="page-footer">
+    <span>Supported By FIFGROUP YOUNG LEADER</span>
+    <span>Made by Novi Maharani</span>
+  </div>
+
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script src="config.js"></script>
+  <script src="verify.js"></script>
+
+</body>
+</html>
