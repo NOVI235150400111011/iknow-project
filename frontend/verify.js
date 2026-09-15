@@ -1,4 +1,25 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // ===== CEK OTENTIKASI SEBELUM MENAMPILKAN HALAMAN =====
+  // Mencegah index.html diakses langsung tanpa login
+  // (misal dengan mengetik URL-nya manual di address bar).
+  try {
+    const authCheck = await fetch(`${API_BASE_URL}/check-auth`, {
+      method: "GET",
+      credentials: "include",
+    });
+    if (!authCheck.ok) {
+      window.location.href = "login.html";
+      return;
+    }
+  } catch (err) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Token valid, tampilkan halaman
+  document.body.style.visibility = "visible";
+
+  // ===== KODE ASLI (tidak berubah dari sebelumnya) =====
   const fileInput1 = document.getElementById("file-input-1");
   const fileInput2 = document.getElementById("file-input-2");
   const uploadBtn1 = document.getElementById("upload-btn-1");

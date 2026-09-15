@@ -16,7 +16,6 @@ app = FastAPI(title="Face Verification API")
 # =========================================================
 # CORS
 # =========================================================
-# Izinkan frontend mengakses API saat development lokal.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -24,6 +23,8 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://localhost:5500",
         "http://127.0.0.1:5500",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -59,6 +60,20 @@ async def health():
     Endpoint publik untuk mengecek apakah server hidup.
     """
     return {"status": "ok"}
+
+
+# =========================================================
+# CHECK AUTH
+# =========================================================
+@app.get("/check-auth", dependencies=[Depends(auth.verify_token)])
+async def check_auth():
+    """
+    Endpoint untuk mengecek apakah token/session masih valid.
+    Dipanggil oleh frontend (index.html) saat halaman dimuat,
+    supaya index.html tidak bisa diakses langsung tanpa login
+    hanya dengan mengetik URL-nya di address bar.
+    """
+    return {"authenticated": True}
 
 
 # =========================================================
@@ -214,8 +229,10 @@ FRONTEND_DIR = os.path.join(
 # =========================================================
 # STATIC FRONTEND
 # =========================================================
-# Pastikan route "/" di atas didefinisikan
-# sebelum mount StaticFiles.
+# Pastikan semua route API di atas didefinisikan
+# sebelum mount StaticFiles ini, karena StaticFiles
+# di-mount di path root "/" dan akan menangkap semua
+# request yang tidak cocok dengan route yang sudah didefinisikan.
 app.mount(
     "/",
     StaticFiles(
